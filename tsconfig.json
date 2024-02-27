@@ -13,10 +13,11 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "outDir": "./dist/",
+    "rootDir": "src",
     "jsx": "react-jsx",
     "noImplicitAny": false
   },
-  "include": ["src", "vite-plugin-svgr/client"],
+  "include": ["src", "vite-env.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

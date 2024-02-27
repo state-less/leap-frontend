@@ -1,0 +1,1 @@
+export const DEF_PAGE_SIZE = 15;
