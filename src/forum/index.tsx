@@ -60,7 +60,7 @@ export const ForumPage = ({
   pageSize: configuredPageSize = DEF_PAGE_SIZE,
   startPage = 1,
   forumKey,
-  basePath = '/',
+  basePath = '',
   ghSrc = {} as any,
 }: ForumPageProps) => {
   const [page, setPage] = useState(startPage);
