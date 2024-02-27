@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A collection of open source fullstack services powered by React Server",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "tsc": "./node_modules/typescript/bin/tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
