@@ -202,7 +202,6 @@ export const ForumRules = ({ ghSrc, basePath }: ForumRulesProps) => {
           <Markdown center={false} src={ghSrc.qa}>
             Loading from GitHub
           </Markdown>
-          v
         </AccordionDetails>
       </Accordion>
 
