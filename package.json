@@ -7,7 +7,7 @@
     "tsc": "./node_modules/typescript/bin/tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "yarn run tsc",
-    "postinstall": "yarn run build"
+    "preinstall": "yarn run build"
   },
   "repository": {
     "type": "git",
