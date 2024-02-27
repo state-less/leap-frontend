@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "preinstall": "tsc"
+    "postinstall": "yarn tsc"
   },
   "repository": {
     "type": "git",
