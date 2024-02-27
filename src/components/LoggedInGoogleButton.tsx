@@ -9,7 +9,6 @@ import { authContext } from '@state-less/react-client';
 import { useContext, useState } from 'react';
 import GoogleLogin, { GoogleLoginResponse } from 'react-google-login';
 import GoogleIcon from '@mui/icons-material/Google';
-import { GOOGLE_ID } from '../lib/config';
 import { stateContext } from '../provider/StateProvider';
 
 import Menu from '@mui/material/Menu';
@@ -75,7 +74,11 @@ export const LoggedInGoogleButton = () => {
   );
 };
 
-export const GoogleLoginButton = () => {
+export type GoogleLoginButtonProps = {
+  clientId: string;
+};
+
+export const GoogleLoginButton = ({ clientId }: GoogleLoginButtonProps) => {
   const { session, authenticate } = useContext(authContext);
   const { state } = useContext(stateContext);
 
@@ -83,7 +86,7 @@ export const GoogleLoginButton = () => {
     <LoggedInGoogleButton />
   ) : (
     <GoogleLogin
-      clientId={GOOGLE_ID}
+      clientId={clientId}
       buttonText="Login"
       onSuccess={(response) => {
         if (!isGoogleLoginResponse(response)) {

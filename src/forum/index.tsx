@@ -29,12 +29,14 @@ import { FlexBox } from '../components/FlexBox';
 import { calc } from '../server-components/examples/VotingApp';
 import { DEF_PAGE_SIZE } from '../lib/const';
 import { ViewCounter } from '../server-components/examples/ViewCounter';
+import { GoogleLoginButton } from '../components/LoggedInGoogleButton';
 
 export type ForumPageProps = {
   pageSize?: number;
   startPage?: number;
   forumKey: string;
   basePath?: string;
+  clientId?: string;
   ghSrc: {
     rules: string;
     qa: string;
@@ -61,6 +63,7 @@ export const ForumPage = ({
   startPage = 1,
   forumKey,
   basePath = '',
+  clientId,
   ghSrc = {} as any,
 }: ForumPageProps) => {
   const [page, setPage] = useState(startPage);
@@ -95,9 +98,7 @@ export const ForumPage = ({
         }}
       >
         {/* <Markdown src={getRawPath(PAGE_SRC)}>*Loading*</Markdown> */}
-
         <Header />
-
         <CardContent>
           {document.getElementById('progress') &&
             createPortal(
@@ -133,7 +134,11 @@ export const ForumPage = ({
                 md: 1,
               }}
             >
-              <ForumRules ghSrc={ghSrc} basePath={basePath} />
+              <ForumRules
+                ghSrc={ghSrc}
+                basePath={basePath}
+                clientId={clientId}
+              />
             </Grid>
           </Grid>
         </CardContent>
@@ -159,13 +164,14 @@ export const ForumPage = ({
 };
 
 export type ForumRulesProps = {
-  basePath: string;
+  basePath?: string;
+  clientId?: string;
   ghSrc: {
     rules: string;
     qa: string;
   };
 };
-export const ForumRules = ({ ghSrc, basePath }: ForumRulesProps) => {
+export const ForumRules = ({ ghSrc, basePath, clientId }: ForumRulesProps) => {
   const [expanded, setExpanded] = useState(0);
   return (
     <StickyCard top={64}>
@@ -207,6 +213,7 @@ export const ForumRules = ({ ghSrc, basePath }: ForumRulesProps) => {
 
       <CardActions>
         <NewPostButton basePath={basePath} />
+        {clientId && <GoogleLoginButton clientId={clientId} />}
       </CardActions>
     </StickyCard>
   );
@@ -468,10 +475,10 @@ export const PageSize = ({ pageSize, setPageSize }) => {
   );
 };
 export const NewPostButton = ({
-  basePath,
+  basePath = '',
   sx,
 }: {
-  basePath: string;
+  basePath?: string;
   sx?: BoxProps['sx'];
 }) => {
   return (

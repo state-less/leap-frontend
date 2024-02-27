@@ -39,6 +39,7 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
+    "@state-less/react-client": "^2.0.12",
     "clsx": "^2.1.0",
     "copy-to-clipboard": "^3.3.3",
     "jotai": "^2.6.5",
@@ -53,7 +54,6 @@
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0",
     "typescript": "^5.3.3",
-    "@state-less/react-client": "^2.0.12",
     "uuid": "^9.0.1"
   }
 }

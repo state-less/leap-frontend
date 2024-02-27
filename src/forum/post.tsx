@@ -39,7 +39,16 @@ import { NewPost } from './newPost';
 import { NewPostButton } from '.';
 import { GoogleLoginButton } from '../components/LoggedInGoogleButton';
 
-export const PostsPage = ({ basePath, forumKey }) => {
+export type PostsPageProps = {
+  clientId?: string;
+  forumKey: string;
+  basePath?: string;
+};
+export const PostsPage = ({
+  basePath = '',
+  forumKey,
+  clientId,
+}: PostsPageProps) => {
   const params = useParams();
   if (params.post === 'new') {
     return <NewPost forumKey={forumKey} />;
@@ -48,7 +57,7 @@ export const PostsPage = ({ basePath, forumKey }) => {
   return (
     <Container maxWidth="lg" disableGutters sx={{ py: 4 }}>
       <Post id={params.post} basePath={basePath} />
-      <ComposeAnswer id={params.post} />
+      <ComposeAnswer id={params.post} clientId={clientId} />
     </Container>
   );
 };
@@ -273,7 +282,7 @@ const Answer = ({ answer }) => {
   );
 };
 
-const ComposeAnswer = ({ id }) => {
+const ComposeAnswer = ({ id, clientId }) => {
   const { session } = useContext(authContext);
   const [component] = useComponent(id);
   const [body, setBody] = useState('');
@@ -305,7 +314,7 @@ const ComposeAnswer = ({ id }) => {
             owner={session?.strategies[session?.strategy]?.decoded}
           />
         )}
-        {!session?.id && <GoogleLoginButton />}
+        {!session?.id && <GoogleLoginButton clientId={clientId} />}
       </CardActions>
     </Card>
   );
