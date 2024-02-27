@@ -32,7 +32,7 @@
     "react-dom": "^18.2.0"
   },
   "homepage": "https://github.com/state-less/leap-frontend#readme",
-  "devDependencies": {
+  "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
@@ -51,9 +51,7 @@
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0",
     "typescript": "^5.3.3",
+    "@state-less/react-client": "^2.0.12",
     "uuid": "^9.0.1"
-  },
-  "dependencies": {
-    "@state-less/react-client": "^2.0.12"
   }
 }
