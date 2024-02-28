@@ -58,7 +58,13 @@ export const PostsPage = ({
 
   return (
     <Container maxWidth="lg" disableGutters sx={{ py: 4 }}>
-      <Post id={params.post} basePath={basePath} onTitleLeave={onTitleLeave} />
+      {params.post && (
+        <Post
+          id={params.post}
+          basePath={basePath}
+          onTitleLeave={onTitleLeave}
+        />
+      )}
       <ComposeAnswer id={params.post} clientId={clientId} />
     </Container>
   );
