@@ -43,11 +43,13 @@ export type PostsPageProps = {
   clientId?: string;
   forumKey: string;
   basePath?: string;
+  onTitleLeave?: (left: boolean) => void;
 };
 export const PostsPage = ({
   basePath = '',
   forumKey,
   clientId,
+  onTitleLeave,
 }: PostsPageProps) => {
   const params = useParams();
   if (params.post === 'new') {
@@ -56,15 +58,20 @@ export const PostsPage = ({
 
   return (
     <Container maxWidth="lg" disableGutters sx={{ py: 4 }}>
-      <Post id={params.post} basePath={basePath} />
+      <Post id={params.post} basePath={basePath} onTitleLeave={onTitleLeave} />
       <ComposeAnswer id={params.post} clientId={clientId} />
     </Container>
   );
 };
 
 const DRAFT = true;
-const Post = ({ id, basePath }) => {
-  const { dispatch } = useContext(stateContext);
+export type PostProps = {
+  id: string;
+  basePath?: string;
+  onTitleLeave?: (left: boolean) => void;
+};
+const Post = ({ id, basePath, onTitleLeave }: PostProps) => {
+  // const { dispatch } = useContext(stateContext);
   const [_, setSkip] = useState(false);
   const [component, { error, loading }] = useComponent(id);
 
@@ -93,9 +100,11 @@ const Post = ({ id, basePath }) => {
     const obs = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
-          dispatch({ type: Actions.SET_LAST_BC, value: true });
+          onTitleLeave?.(true);
+          // dispatch({ type: Actions.SET_LAST_BC, value: true });
         } else if (entries[0]?.boundingClientRect?.y > 0) {
-          dispatch({ type: Actions.SET_LAST_BC, value: false });
+          onTitleLeave?.(false);
+          // dispatch({ type: Actions.SET_LAST_BC, value: false });
         }
       },
       {
