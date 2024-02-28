@@ -365,3 +365,4 @@ const ComposeAnswer = ({ id, clientId }) => {
     </Card>
   );
 };
+export default PostsPage;

@@ -489,3 +489,5 @@ export const NewPostButton = ({
     </Link>
   );
 };
+
+export default ForumPage;
