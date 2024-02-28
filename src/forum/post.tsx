@@ -47,12 +47,16 @@ export type PostsPageProps = {
   forumKey: string;
   basePath?: string;
   onTitleLeave?: (left: boolean) => void;
+  settings: {
+    showPostBC?: boolean;
+  };
 };
 export const PostsPage = ({
   basePath = '',
   forumKey,
   clientId,
   onTitleLeave,
+  settings: { showPostBC } = {},
 }: PostsPageProps) => {
   const params = useParams();
   if (params.post === 'new') {
@@ -66,6 +70,7 @@ export const PostsPage = ({
           id={params.post}
           basePath={basePath}
           onTitleLeave={onTitleLeave}
+          showBC={showPostBC}
         />
       )}
       <ComposeAnswer id={params.post} clientId={clientId} />
@@ -78,8 +83,9 @@ export type PostProps = {
   id: string;
   basePath?: string;
   onTitleLeave?: (left: boolean) => void;
+  showBC?: boolean;
 };
-const Post = ({ id, basePath, onTitleLeave }: PostProps) => {
+const Post = ({ id, basePath, onTitleLeave, showBC = false }: PostProps) => {
   // const { dispatch } = useContext(stateContext);
   const [_, setSkip] = useState(false);
   const [component, { error, loading }] = useComponent(id);
@@ -137,7 +143,7 @@ const Post = ({ id, basePath, onTitleLeave }: PostProps) => {
         <LinearProgress variant="indeterminate" />
       </>
     );
-  const title = component?.props?.title;
+  const title = component?.props?.title || 'Post';
   return (
     <div ref={ref}>
       <FlexBox
@@ -149,19 +155,23 @@ const Post = ({ id, basePath, onTitleLeave }: PostProps) => {
       >
         <CardHeader
           title={
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Link
-                component={RouterLink}
-                sx={{ color: 'black', display: 'flex' }}
-                to={'/'}
-              >
-                <Home sx={{ width: '1.4em', height: '1.4em' }} />
-              </Link>
-              /
-              <Typography variant="h4" sx={{ color: 'black' }}>
-                {component?.props?.title || 'Post'}
-              </Typography>
-            </Box>
+            showBC ? (
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Link
+                  component={RouterLink}
+                  sx={{ color: 'black', display: 'flex' }}
+                  to={'/'}
+                >
+                  <Home sx={{ width: '1.4em', height: '1.4em' }} />
+                </Link>
+                /
+                <Typography variant="h4" sx={{ color: 'black' }}>
+                  {title}
+                </Typography>
+              </Box>
+            ) : (
+              title
+            )
           }
         ></CardHeader>
 
