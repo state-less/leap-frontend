@@ -12,6 +12,7 @@ import {
   LinearProgress,
   IconButton,
   Link,
+  Typography,
 } from '@mui/material';
 import {
   authContext,
@@ -39,6 +40,7 @@ import { NewPost } from './newPost';
 
 import { NewPostButton } from '.';
 import { GoogleLoginButton } from '../components/LoggedInGoogleButton';
+import { Home } from '@mui/icons-material';
 
 export type PostsPageProps = {
   clientId?: string;
@@ -149,16 +151,16 @@ const Post = ({ id, basePath, onTitleLeave }: PostProps) => {
           title={
             <>
               <Link component={RouterLink} sx={{ color: 'black' }} to={'/'}>
-                Forum
+                <Home />
               </Link>
               /
-              <Link
+              <Typography
                 sx={{ color: 'black' }}
-                to={window.location.pathname}
-                component={RouterLink}
+                // to={window.location.pathname}
+                // component={RouterLink}
               >
                 {component?.props?.title || 'Post'}
-              </Link>
+              </Typography>
             </>
           }
         ></CardHeader>
