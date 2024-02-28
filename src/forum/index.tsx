@@ -43,7 +43,7 @@ export type ForumPageProps = {
   };
 };
 
-export type PostProps = {
+export type OverViewPostProps = {
   children: any[];
   component?: string;
   props: PostServerProps;
@@ -245,7 +245,7 @@ export const StickyCard = (props) => {
   return <Card ref={ref}>{props.children}</Card>;
 };
 
-const Post = (post: PostProps) => {
+const Post = (post: OverViewPostProps) => {
   const { basePath } = post;
   const [votes] = useComponent(post.children?.[0]?.component, {
     data: post.children?.[0],
