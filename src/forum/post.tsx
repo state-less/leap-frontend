@@ -149,19 +149,19 @@ const Post = ({ id, basePath, onTitleLeave }: PostProps) => {
       >
         <CardHeader
           title={
-            <>
-              <Link component={RouterLink} sx={{ color: 'black' }} to={'/'}>
-                <Home />
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Link
+                component={RouterLink}
+                sx={{ color: 'black', display: 'flex' }}
+                to={'/'}
+              >
+                <Home sx={{ width: '1.4em', height: '1.4em' }} />
               </Link>
               /
-              <Typography
-                sx={{ color: 'black' }}
-                // to={window.location.pathname}
-                // component={RouterLink}
-              >
+              <Typography variant="h4" sx={{ color: 'black' }}>
                 {component?.props?.title || 'Post'}
               </Typography>
-            </>
+            </Box>
           }
         ></CardHeader>
 
