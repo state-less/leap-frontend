@@ -24,6 +24,7 @@
   ],
   "author": "Moritz Roessler",
   "license": "MIT",
+  "sideEffects": false,
   "bugs": {
     "url": "https://github.com/state-less/leap-frontend/issues"
   },
