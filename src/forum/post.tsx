@@ -47,7 +47,7 @@ export type PostsPageProps = {
   forumKey: string;
   basePath?: string;
   onTitleLeave?: (left: boolean) => void;
-  settings: {
+  settings?: {
     showPostBC?: boolean;
   };
 };
