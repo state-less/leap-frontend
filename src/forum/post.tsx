@@ -11,13 +11,14 @@ import {
   Alert,
   LinearProgress,
   IconButton,
+  Link,
 } from '@mui/material';
 import {
   authContext,
   useComponent,
   useLocalStorage,
 } from '@state-less/react-client';
-import { useParams } from 'react-router-dom';
+import { useParams, Link as RouterLink } from 'react-router-dom';
 import { useEffect, useState, useRef, useContext } from 'react';
 import Visibility from '@mui/icons-material/Visibility';
 
@@ -134,6 +135,7 @@ const Post = ({ id, basePath, onTitleLeave }: PostProps) => {
         <LinearProgress variant="indeterminate" />
       </>
     );
+  const title = component?.props?.title;
   return (
     <div ref={ref}>
       <FlexBox
@@ -143,7 +145,24 @@ const Post = ({ id, basePath, onTitleLeave }: PostProps) => {
           flexWrap: 'wrap-reverse',
         }}
       >
-        <CardHeader title={component?.props?.title}></CardHeader>
+        <CardHeader
+          title={
+            <>
+              <Link component={RouterLink} sx={{ color: 'white' }} to={'/'}>
+                Forum
+              </Link>
+              /
+              <Link
+                sx={{ color: 'white' }}
+                to={window.location.pathname}
+                component={RouterLink}
+              >
+                {component?.props?.title || 'Post'}
+              </Link>
+            </>
+          }
+        ></CardHeader>
+
         <FlexBox
           sx={{
             ml: 'auto',
