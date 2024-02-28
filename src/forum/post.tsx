@@ -148,12 +148,12 @@ const Post = ({ id, basePath, onTitleLeave }: PostProps) => {
         <CardHeader
           title={
             <>
-              <Link component={RouterLink} sx={{ color: 'white' }} to={'/'}>
+              <Link component={RouterLink} sx={{ color: 'black' }} to={'/'}>
                 Forum
               </Link>
               /
               <Link
-                sx={{ color: 'white' }}
+                sx={{ color: 'black' }}
                 to={window.location.pathname}
                 component={RouterLink}
               >
