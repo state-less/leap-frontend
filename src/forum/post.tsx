@@ -53,6 +53,7 @@ export type PostsPageProps = {
   settings?: {
     showPostBC?: boolean;
     forumTitle?: string;
+    renderMetaTags?: boolean;
   };
 };
 export const PostsPage = ({
@@ -60,7 +61,7 @@ export const PostsPage = ({
   forumKey,
   clientId,
   onTitleLeave,
-  settings: { showPostBC, forumTitle } = {},
+  settings: { showPostBC, forumTitle, renderMetaTags } = {},
 }: PostsPageProps) => {
   const params = useParams();
 
@@ -76,7 +77,7 @@ export const PostsPage = ({
           basePath={basePath}
           onTitleLeave={onTitleLeave}
           showBC={showPostBC}
-          settings={{ forumTitle }}
+          settings={{ forumTitle, renderMetaTags }}
         />
       )}
       <ComposeAnswer id={params.post} clientId={clientId} />
