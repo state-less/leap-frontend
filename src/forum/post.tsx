@@ -170,6 +170,8 @@ const Post = ({
         {renderMetaTags && (
           <Helmet>
             <title>{`${title} | ${forumTitle}`}</title>
+            <meta property="og:title" content={`${title} | ${forumTitle}`} />
+            <meta name="twitter:title" content={`${title} | ${forumTitle}`} />
           </Helmet>
         )}
         <CardHeader
