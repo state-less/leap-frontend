@@ -8,7 +8,7 @@
     "tsc": "./node_modules/typescript/bin/tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "preinstall": "npm run build"
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -48,6 +48,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-login": "^5.2.2",
+    "react-helmet": "^6.1.0",
     "react-markdown": "^9.0.1",
     "react-router": "^6.22.1",
     "react-router-dom": "^6.22.1",

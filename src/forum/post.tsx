@@ -28,6 +28,7 @@ import { useSyncedState } from '../lib/hooks';
 import { ViewCounter } from '../server-components/examples/ViewCounter';
 import { UpDownButtons } from '../server-components/examples/VotingApp';
 import { FlexBox } from '../components/FlexBox';
+
 import {
   AnswerActions,
   ContentEditor,
@@ -42,6 +43,8 @@ import { NewPostButton } from '.';
 import { GoogleLoginButton } from '../components/LoggedInGoogleButton';
 import { Home } from '@mui/icons-material';
 
+import { Helmet } from 'react-helmet';
+
 export type PostsPageProps = {
   clientId?: string;
   forumKey: string;
@@ -49,6 +52,7 @@ export type PostsPageProps = {
   onTitleLeave?: (left: boolean) => void;
   settings?: {
     showPostBC?: boolean;
+    forumTitle?: string;
   };
 };
 export const PostsPage = ({
@@ -56,9 +60,10 @@ export const PostsPage = ({
   forumKey,
   clientId,
   onTitleLeave,
-  settings: { showPostBC } = {},
+  settings: { showPostBC, forumTitle } = {},
 }: PostsPageProps) => {
   const params = useParams();
+
   if (params.post === 'new') {
     return <NewPost forumKey={forumKey} />;
   }
@@ -71,6 +76,7 @@ export const PostsPage = ({
           basePath={basePath}
           onTitleLeave={onTitleLeave}
           showBC={showPostBC}
+          settings={{ forumTitle }}
         />
       )}
       <ComposeAnswer id={params.post} clientId={clientId} />
@@ -84,8 +90,15 @@ export type PostProps = {
   basePath?: string;
   onTitleLeave?: (left: boolean) => void;
   showBC?: boolean;
+  settings?: { forumTitle?: string; renderMetaTags?: boolean };
 };
-const Post = ({ id, basePath, onTitleLeave, showBC = false }: PostProps) => {
+const Post = ({
+  id,
+  basePath,
+  onTitleLeave,
+  showBC = false,
+  settings: { forumTitle, renderMetaTags } = {},
+}: PostProps) => {
   // const { dispatch } = useContext(stateContext);
   const [_, setSkip] = useState(false);
   const [component, { error, loading }] = useComponent(id);
@@ -153,6 +166,11 @@ const Post = ({ id, basePath, onTitleLeave, showBC = false }: PostProps) => {
           flexWrap: 'wrap-reverse',
         }}
       >
+        {renderMetaTags && (
+          <Helmet>
+            <title>{`${title} | ${forumTitle}`}</title>
+          </Helmet>
+        )}
         <CardHeader
           title={
             showBC ? (
