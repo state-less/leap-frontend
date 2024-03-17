@@ -376,7 +376,7 @@ const ComposeAnswer = ({ id, clientId }) => {
         {session?.id && (
           <OwnerChip
             sx={{ marginLeft: 1 }}
-            owner={session?.strategies[session?.strategy]?.decoded}
+            owner={session?.strategies?.[session?.strategy || '']?.decoded}
           />
         )}
         {!session?.id && <GoogleLoginButton clientId={clientId} />}
