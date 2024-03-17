@@ -156,6 +156,7 @@ export const ContentEditor = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
+  const innerHeight = typeof window === 'undefined' ? 768 : window.innerHeight;
   return (
     <>
       <Grid container sx={{ maxWidth: '100%' }}>
@@ -197,7 +198,7 @@ export const ContentEditor = ({
                   label={
                     'Body' + (component?.props?.body !== body ? '...' : '')
                   }
-                  rows={(window.innerHeight - 120) / 1.4375 / 16 / 1.5}
+                  rows={(innerHeight - 120) / 1.4375 / 16 / 1.5}
                   value={body}
                   onChange={(e) => {
                     setBody(e.target.value);
@@ -212,7 +213,7 @@ export const ContentEditor = ({
             ref={contentRef}
             sx={{
               flex: 1,
-              maxHeight: edit ? (window.innerHeight - 120) / 1.5 : 'unset',
+              maxHeight: edit ? (innerHeight - 120) / 1.5 : 'unset',
               overflowY: edit ? 'scroll' : 'unset',
             }}
           >
