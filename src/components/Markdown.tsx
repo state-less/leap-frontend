@@ -1,16 +1,19 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Link,
+  Box,
+} from '@mui/material';
+
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useContext, useEffect, useMemo, createElement } from 'react';
 import { IconButton, List, ListItem, ListItemText } from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { ContentCopy } from '@mui/icons-material';
 import copy from 'copy-to-clipboard';
 import rehypeRaw from 'rehype-raw';
 import rehypeHighlight from 'rehype-highlight';
@@ -20,8 +23,8 @@ import clsx from 'clsx';
 import { atom, useAtom, PrimitiveAtom } from 'jotai';
 import { v4 } from 'uuid';
 
-import { Actions, stateContext } from '../provider/StateProvider';
-import { wrapPromise } from '../lib/util/SSR';
+import { Actions, stateContext } from '../provider/StateProvider.js';
+import { wrapPromise } from '../lib/util/SSR.js';
 import { Helmet } from 'react-helmet';
 
 const getChildText = (props) => {
@@ -360,7 +363,7 @@ export const Markdown = ({
                   });
                 }}
               >
-                <ContentCopyIcon />
+                <ContentCopy />
               </IconButton>
             </Box>
             <pre>
