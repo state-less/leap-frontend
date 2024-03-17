@@ -10,9 +10,9 @@ import {
   Chip,
 } from '@mui/material';
 import { useComponent } from '@state-less/react-client';
-import HeartIcon from '@mui/icons-material/Favorite';
+import { Favorite } from '@mui/icons-material';
 import { ReactNode } from 'react';
-import { FlexBox } from '../../components/FlexBox';
+import { FlexBox } from '../../components/FlexBox.js';
 
 export const Poll = ({
   id = 'poll',
@@ -70,7 +70,7 @@ export const Poll = ({
                   }
                   color={component.props.voted === i ? 'error' : 'default'}
                 >
-                  <HeartIcon />
+                  <Favorite />
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>

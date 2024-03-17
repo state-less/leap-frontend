@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { useComponent } from '@state-less/react-client';
 import { useEffect, useRef, useState } from 'react';
-import { Markdown } from '../../components/Markdown';
+import { Markdown } from '../../components/Markdown.js';
 export const ChatApp = () => {
   const [items, setItems] = useState(10);
   const [room, { loading }] = useComponent('room-global', {

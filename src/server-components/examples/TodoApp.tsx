@@ -13,8 +13,8 @@ import {
   ListItemText,
   TextField,
 } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { Edit } from '@mui/icons-material';
+import { RemoveCircle } from '@mui/icons-material';
 import { useComponent } from '@state-less/react-client';
 import { useEffect, useState } from 'react';
 
@@ -50,7 +50,7 @@ export const TodoApp = (props) => {
         }
         action={
           <IconButton onClick={() => setEdit(!edit)}>
-            <EditIcon />
+            <Edit />
           </IconButton>
         }
       ></CardHeader>
@@ -79,7 +79,7 @@ const TodoItem = (props) => {
       {edit && (
         <ListItemIcon>
           <IconButton onClick={() => remove(component.props.id)}>
-            <RemoveCircleIcon />
+            <RemoveCircle />
           </IconButton>
         </ListItemIcon>
       )}

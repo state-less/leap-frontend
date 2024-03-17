@@ -1,5 +1,4 @@
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import GroupIcon from '@mui/icons-material/Group';
+import { Visibility, Group } from '@mui/icons-material';
 
 import { useComponent } from '@state-less/react-client';
 import {
@@ -44,9 +43,9 @@ export const ViewCounterChip = ({ clientOnly, loading, component }) => {
   return (
     <>
       {!clientOnly && (
-        <Chip icon={<VisibilityIcon />} label={loading ? '-' : viewsStr} />
+        <Chip icon={<Visibility />} label={loading ? '-' : viewsStr} />
       )}
-      {<Chip icon={<VisibilityIcon />} label={loading ? '-' : clientStr} />}
+      {<Chip icon={<Visibility />} label={loading ? '-' : clientStr} />}
     </>
   );
 };
@@ -71,7 +70,7 @@ export const ViewCounterItem = ({
         {!clientOnly && (
           <ListItem dense sx={{ color: textColor }}>
             <ListItemIcon>
-              <VisibilityIcon />
+              <Visibility />
             </ListItemIcon>
             <ListItemText
               sx={{ color: textColor }}
@@ -80,9 +79,7 @@ export const ViewCounterItem = ({
           </ListItem>
         )}
         <ListItem dense>
-          <ListItemIcon>
-            {clientOnly ? <VisibilityIcon /> : <GroupIcon />}
-          </ListItemIcon>
+          <ListItemIcon>{clientOnly ? <Visibility /> : <Group />}</ListItemIcon>
           <ListItemText
             sx={{ color: textColor }}
             primary={

@@ -24,12 +24,12 @@ import { Link as RouterLink } from 'react-router-dom';
 import { PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { Markdown } from '../components/Markdown';
-import { FlexBox } from '../components/FlexBox';
-import { calc } from '../server-components/examples/VotingApp';
-import { DEF_PAGE_SIZE } from '../lib/const';
-import { ViewCounter } from '../server-components/examples/ViewCounter';
-import { GoogleLoginButton } from '../components/LoggedInGoogleButton';
+import { Markdown } from '../components/Markdown.js';
+import { FlexBox } from '../components/FlexBox.js';
+import { calc } from '../server-components/examples/VotingApp.js';
+import { DEF_PAGE_SIZE } from '../lib/const.js';
+import { ViewCounter } from '../server-components/examples/ViewCounter.js';
+import { GoogleLoginButton } from '../components/LoggedInGoogleButton.js';
 
 export type ForumPageProps = {
   pageSize?: number;

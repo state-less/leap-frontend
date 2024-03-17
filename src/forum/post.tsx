@@ -21,27 +21,25 @@ import {
 } from '@state-less/react-client';
 import { useParams, Link as RouterLink } from 'react-router-dom';
 import { useEffect, useState, useRef, useContext } from 'react';
-import Visibility from '@mui/icons-material/Visibility';
 
-import { CommunityComments } from '../server-components/examples/Comments';
-import { useSyncedState } from '../lib/hooks';
-import { ViewCounter } from '../server-components/examples/ViewCounter';
-import { UpDownButtons } from '../server-components/examples/VotingApp';
-import { FlexBox } from '../components/FlexBox';
+import { CommunityComments } from '../server-components/examples/Comments.js';
+import { useSyncedState } from '../lib/hooks.js';
+import { ViewCounter } from '../server-components/examples/ViewCounter.js';
+import { UpDownButtons } from '../server-components/examples/VotingApp.js';
+import { FlexBox } from '../components/FlexBox.js';
 
 import {
   AnswerActions,
   ContentEditor,
   OwnerChip,
   PostActions,
-} from '../server-components/ContentEditor';
-import { Actions, stateContext } from '../provider/StateProvider';
+} from '../server-components/ContentEditor.js';
 
-import { NewPost } from './newPost';
+import { NewPost } from './newPost.js';
 
-import { NewPostButton } from '.';
-import { GoogleLoginButton } from '../components/LoggedInGoogleButton';
-import { Home } from '@mui/icons-material';
+import { NewPostButton } from './index.js';
+import { GoogleLoginButton } from '../components/LoggedInGoogleButton.js';
+import { Home, Visibility } from '@mui/icons-material';
 
 import { Helmet } from 'react-helmet';
 

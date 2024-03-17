@@ -1,5 +1,10 @@
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import {
+  ThumbDown,
+  ThumbUp,
+  KeyboardArrowUp,
+  KeyboardArrowDown,
+} from '@mui/icons-material';
+
 import {
   Alert,
   Box,
@@ -10,8 +15,6 @@ import {
 } from '@mui/material';
 import { useComponent } from '@state-less/react-client';
 
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useMemo } from 'react';
 
 export const calc = (
@@ -88,7 +91,7 @@ export const UpDownButtons = ({
         disabled={voted === -1 && policies.includes('single-vote')}
         sx={{ pb: 0 }}
       >
-        <KeyboardArrowUpIcon />
+        <KeyboardArrowUp />
       </IconButton>
       {loading ? <CircularProgress size="1rem"></CircularProgress> : sum}
       <IconButton
@@ -97,7 +100,7 @@ export const UpDownButtons = ({
         onClick={() => component?.props.downvote()}
         disabled={voted === 1 && policies.includes('single-vote')}
       >
-        <KeyboardArrowDownIcon />
+        <KeyboardArrowDown />
       </IconButton>
     </Box>
   );
@@ -152,7 +155,7 @@ export const UpButton = ({
         onClick={() => component?.props.upvote()}
         disabled={voted === -1 && policies.includes('single-vote')}
       >
-        <KeyboardArrowUpIcon />
+        <KeyboardArrowUp />
       </IconButton>
       {loading ? <CircularProgress size={'14px'} /> : sum}
     </Box>
@@ -210,7 +213,7 @@ export const VotingApp = ({
             onClick={() => component?.props.upvote()}
             disabled={voted === -1 && policies.includes('single-vote')}
           >
-            <ThumbUpIcon />
+            <ThumbUp />
           </IconButton>
         ) : (
           <Button
@@ -218,7 +221,7 @@ export const VotingApp = ({
             color="success"
             onClick={() => component?.props.upvote()}
             disabled={voted === -1 && policies.includes('single-vote')}
-            startIcon={<ThumbUpIcon />}
+            startIcon={<ThumbUp />}
           >
             {upvotes || 0}
           </Button>
@@ -232,7 +235,7 @@ export const VotingApp = ({
             onClick={() => component?.props.downvote()}
             disabled={voted === 1 && policies.includes('single-vote')}
           >
-            <ThumbDownIcon />
+            <ThumbDown />
           </IconButton>
         ) : (
           <Button
@@ -240,7 +243,7 @@ export const VotingApp = ({
             color="error"
             onClick={() => component?.props.downvote()}
             disabled={voted === 1 && policies.includes('single-vote')}
-            endIcon={<ThumbDownIcon />}
+            endIcon={<ThumbDown />}
           >
             {downvotes || 0}
           </Button>

@@ -16,8 +16,8 @@ import { useState } from 'react';
 import { useComponent } from '@state-less/react-client';
 import { useNavigate } from 'react-router';
 
-import { FlexBox } from '../components/FlexBox';
-import { ContentEditor } from '../server-components/ContentEditor';
+import { FlexBox } from '../components/FlexBox.js';
+import { ContentEditor } from '../server-components/ContentEditor.js';
 
 export const Tags = ({ onChange }) => {
   const [tags, setTags] = useState<Array<string>>([]);

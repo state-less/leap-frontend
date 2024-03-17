@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, useReducer } from 'react';
+import { createContext, Dispatch, useReducer } from 'react';
 
 type State = {
   menuOpen: boolean;

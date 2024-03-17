@@ -19,10 +19,13 @@ import {
 } from '@mui/material';
 import { authContext, useComponent } from '@state-less/react-client';
 import { useContext, useMemo, useState } from 'react';
-import GoogleIcon from '@mui/icons-material/Google';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { UpButton, UpDownButtons, VotingApp } from './VotingApp';
-import { Markdown } from '../../components/Markdown';
+import {
+  Google as GoogleIcon,
+  Delete as DeleteIcon,
+} from '@mui/icons-material';
+
+import { UpButton, UpDownButtons, VotingApp } from './VotingApp.js';
+import { Markdown } from '../../components/Markdown.js';
 
 export const CommunityComments = ({
   id = 'comments',

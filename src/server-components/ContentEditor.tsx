@@ -11,9 +11,9 @@ import {
 import { useRef } from 'react';
 import { PushPin, PushPinOutlined, Person } from '@mui/icons-material';
 
-import { Markdown } from '../components/Markdown';
+import { Markdown } from '../components/Markdown.js';
 
-import { Reactions } from './Reactions';
+import { Reactions } from './Reactions.js';
 
 export const PostActions = ({ component, edit, setEdit, draft: _ }) => {
   const editTitle = edit === 2 ? 'Save' : edit === 1 ? 'Ok' : 'Edit';
@@ -189,8 +189,8 @@ export const ContentEditor = ({
                     loading
                       ? 'warning'
                       : component?.props?.body === body
-                        ? 'success'
-                        : 'primary'
+                      ? 'success'
+                      : 'primary'
                   }
                   multiline
                   fullWidth
