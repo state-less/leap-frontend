@@ -18,7 +18,9 @@ type HistoryAction = {
   reverse: () => void;
 };
 
-const params = new URLSearchParams(window?.location?.search);
+const params = new URLSearchParams(
+  typeof window === 'undefined' ? '' : window?.location?.search
+);
 const bg = Number(params.get('bg')) % 4;
 
 const initialState: State = {
