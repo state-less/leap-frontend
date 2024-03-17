@@ -1,5 +1,4 @@
 import React, { createContext, Dispatch, useReducer } from 'react';
-import { message } from '../lib/static';
 
 type State = {
   menuOpen: boolean;
@@ -25,7 +24,7 @@ const _localStorage =
         getItem: (name) => null,
       }
     : localStorage;
-    
+
 const params = new URLSearchParams(
   typeof window === 'undefined' ? '' : window?.location?.search
 );
@@ -39,7 +38,7 @@ const initialState: State = {
     : Number(_localStorage?.getItem('animatedBackground')) || bg,
   messages: [] as any[],
   alerts: {
-    info: [message],
+    info: [],
     warning: [],
   },
   history: [],
