@@ -1,6 +1,6 @@
 {
   "name": "@state-less/leap-frontend",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "A collection of open source fullstack services powered by React Server",
   "main": "dist/index.js",
   "type": "module",
