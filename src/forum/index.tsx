@@ -100,7 +100,7 @@ export const ForumPage = ({
         {/* <Markdown src={getRawPath(PAGE_SRC)}>*Loading*</Markdown> */}
         <Header />
         <CardContent>
-          {document.getElementById('progress') &&
+          {/* {document.getElementById('progress') &&
             createPortal(
               loading ? (
                 <LinearProgress color="secondary" variant={'indeterminate'} />
@@ -112,7 +112,7 @@ export const ForumPage = ({
                 />
               ),
               document.getElementById('progress')!
-            )}
+            )} */}
           <Grid container spacing={2}>
             <Grid
               item
