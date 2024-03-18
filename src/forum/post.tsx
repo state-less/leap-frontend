@@ -100,7 +100,10 @@ const Post = ({
 }: PostProps) => {
   // const { dispatch } = useContext(stateContext);
   const [_, setSkip] = useState(false);
-  const [component, { error, loading }] = useComponent(id);
+  const [component, { error, loading }] = useComponent(id, {
+    suspend: true,
+    ssr: import.meta.env.SSR,
+  });
 
   useEffect(() => {
     /* Skip recreated ViewCounter component as long as the post is in the cache*/
@@ -288,6 +291,8 @@ const Post = ({
 
 const Answer = ({ answer }) => {
   const [component] = useComponent(answer?.component, {
+    suspend: true,
+    ssr: import.meta.env.SSR,
     data: answer,
   });
   const [edit, setEdit] = useState(0);
@@ -349,7 +354,10 @@ const Answer = ({ answer }) => {
 
 const ComposeAnswer = ({ id, clientId }) => {
   const { session } = useContext(authContext);
-  const [component] = useComponent(id);
+  const [component] = useComponent(id, {
+    suspend: true,
+    ssr: import.meta.env.SSR,
+  });
   const [body, setBody] = useState('');
   return (
     <Card sx={{ p: 2 }}>

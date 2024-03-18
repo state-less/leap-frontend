@@ -3,7 +3,10 @@ import { Alert } from '@mui/material';
 import { useState, useEffect } from 'react';
 
 export const Server = () => {
-  const [props, { loading, error }] = useComponent('server', {});
+  const [props, { loading, error }] = useComponent('server', {
+    suspend: true,
+    ssr: import.meta.env.SSR,
+  });
   const [count, setCount] = useState(0);
   useEffect(() => {
     setTimeout(setCount, 1000, (count + 1) % 2);

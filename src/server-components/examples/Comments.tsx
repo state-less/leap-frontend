@@ -34,8 +34,14 @@ export const CommunityComments = ({
   id?: string;
   title?: string;
 }) => {
-  const [component, { error, loading }] = useComponent(id, {});
-  const [features, { loading: featuresLoading }] = useComponent('features');
+  const [component, { error, loading }] = useComponent(id, {
+    suspend: true,
+    ssr: import.meta.env.SSR,
+  });
+  const [features, { loading: featuresLoading }] = useComponent('features', {
+    suspend: true,
+    ssr: import.meta.env.SSR,
+  });
   const [comment, setComment] = useState('');
   const comments = component?.props?.comments || [];
 
@@ -117,7 +123,10 @@ export const Comments = ({
   title?: string;
 }) => {
   const [component, { error, loading }] = useComponent(id, {});
-  const [features, { loading: featuresLoading }] = useComponent('features');
+  const [features, { loading: featuresLoading }] = useComponent('features', {
+    suspend: true,
+    ssr: import.meta.env.SSR,
+  });
   const [comment, setComment] = useState('');
   const comments = component?.props?.comments || [];
 
@@ -190,11 +199,14 @@ const StrategyIcons = {
 const Comment = ({ comment, canDelete, wilson }) => {
   const { session } = useContext(authContext);
   const [component, { error, loading }] = useComponent(comment.key, {
+    suspend: true,
+    ssr: import.meta.env.SSR,
     data: comment,
   });
   const props = component?.props;
   const isOwnComment =
-    props.identity.email === session?.strategies?.[session?.strategy || '']?.email ||
+    props.identity.email ===
+      session?.strategies?.[session?.strategy || '']?.email ||
     (props.identity.strategy === 'anonymous' &&
       props.identity.id === JSON.parse(localStorage.id));
   const Icon = StrategyIcons[props?.identity?.strategy];
@@ -241,11 +253,14 @@ const Comment = ({ comment, canDelete, wilson }) => {
 const CommunityComment = ({ comment, canDelete, wilson }) => {
   const { session } = useContext(authContext);
   const [component, { error, loading }] = useComponent(comment.key, {
+    suspend: true,
+    ssr: import.meta.env.SSR,
     data: comment,
   });
   const props = component?.props;
   const isOwnComment =
-    props.identity.email === session?.strategies?.[session?.strategy || '']?.email ||
+    props.identity.email ===
+      session?.strategies?.[session?.strategy || '']?.email ||
     (props.identity.strategy === 'anonymous' &&
       props.identity.id === JSON.parse(localStorage.id));
   const Icon = StrategyIcons[props?.identity?.strategy];

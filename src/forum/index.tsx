@@ -72,6 +72,8 @@ export const ForumPage = ({
     configuredPageSize
   );
   const [component, { loading }] = useComponent(forumKey, {
+    suspend: true,
+    ssr: import.meta.env.SSR,
     props: {
       page,
       pageSize,
@@ -249,6 +251,8 @@ const Post = (post: OverViewPostProps) => {
   const { basePath } = post;
   const [votes] = useComponent(post.children?.[0]?.component, {
     data: post.children?.[0],
+    suspend: true,
+    ssr: import.meta.env.SSR,
   });
   const { score, upvotes, downvotes } = votes?.props || {};
   const wilson = true,

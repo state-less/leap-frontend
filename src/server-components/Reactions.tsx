@@ -51,6 +51,8 @@ const availableReactions = [
 
 export const Reactions = ({ data }) => {
   const [component, { error, refetch }] = useComponent(data?.component, {
+    suspend: true,
+    ssr: import.meta.env.SSR,
     data,
   });
   const { voted, reactions } = component?.props || {};
