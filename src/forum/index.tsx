@@ -49,7 +49,7 @@ export type OverViewPostProps = {
   component?: string;
   props: PostServerProps;
   basePath: string;
-  ssr?: string;
+  ssr?: boolean;
 };
 
 export type PostServerProps = {
@@ -128,7 +128,7 @@ export const ForumPage = ({
                 md: 0,
               }}
             >
-              <Posts component={component} basePath={basePath} />
+              <Posts component={component} basePath={basePath} ssr={ssr} />
             </Grid>
             <Grid
               item

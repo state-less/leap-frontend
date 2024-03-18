@@ -159,6 +159,7 @@ export const Comments = ({
               comment={child}
               canDelete={canDelete}
               wilson={features?.props?.wilson}
+              ssr={ssr}
             />
           );
         })}

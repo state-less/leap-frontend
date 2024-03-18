@@ -92,7 +92,7 @@ export const SaveButton = ({ component, title, edit, setEdit }) => {
     </>
   );
 };
-export const AnswerActions = ({ component, edit, setEdit, draft }) => {
+export const AnswerActions = ({ component, edit, setEdit, draft, ssr }) => {
   return (
     <>
       {component?.props?.canDelete && (
