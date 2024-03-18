@@ -2,10 +2,10 @@ import { useComponent } from '@state-less/react-client';
 import { Alert } from '@mui/material';
 import { useState, useEffect } from 'react';
 
-export const Server = () => {
+export const Server = ({ ssr }) => {
   const [props, { loading, error }] = useComponent('server', {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
   });
   const [count, setCount] = useState(0);
   useEffect(() => {

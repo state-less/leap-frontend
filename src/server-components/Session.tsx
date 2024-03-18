@@ -1,10 +1,10 @@
 import { Alert } from '@mui/material';
 import { useComponent } from '@state-less/react-client';
 
-export const ServerSession = () => {
+export const ServerSession = ({ ssr }) => {
   const [component, { error, loading }] = useComponent('session', {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
   });
   if (loading) return <Alert severity="info">Loading...</Alert>;
   if (error) return <Alert severity="error">{error.message}</Alert>;

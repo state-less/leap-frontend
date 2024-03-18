@@ -69,13 +69,14 @@ export const Tags = ({ onChange }) => {
 };
 export type NewPostProps = {
   forumKey: string;
+  ssr?: boolean;
 };
-export const NewPost = ({ forumKey }: NewPostProps) => {
+export const NewPost = ({ forumKey, ssr }: NewPostProps) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [component, { loading }] = useComponent(forumKey, {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
   });
   const [tags, setTags] = useState([]);
   const navigate = useNavigate();

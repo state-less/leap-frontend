@@ -120,13 +120,13 @@ export const AnswerActions = ({ component, edit, setEdit, draft }) => {
             title={edit > 0 ? (draft ? 'Save' : 'Ok') : 'Edit'}
           />
 
-          <Reactions data={component?.children?.[2]} />
+          <Reactions data={component?.children?.[2]} ssr={ssr} />
           <OwnerChip owner={component?.props?.owner} />
         </CardActions>
       )}
       {!component?.props?.canDelete && (
         <CardActions sx={{ display: 'flex' }}>
-          <Reactions data={component?.children?.[2]} />
+          <Reactions data={component?.children?.[2]} ssr={ssr} />
           <OwnerChip owner={component?.props?.owner} />
         </CardActions>
       )}

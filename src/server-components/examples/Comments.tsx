@@ -30,17 +30,19 @@ import { Markdown } from '../../components/Markdown.js';
 export const CommunityComments = ({
   id = 'comments',
   title,
+  ssr,
 }: {
   id?: string;
   title?: string;
+  ssr?: boolean;
 }) => {
   const [component, { error, loading }] = useComponent(id, {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
   });
   const [features, { loading: featuresLoading }] = useComponent('features', {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
   });
   const [comment, setComment] = useState('');
   const comments = component?.props?.comments || [];
@@ -70,6 +72,7 @@ export const CommunityComments = ({
                 comment={child}
                 canDelete={canDelete}
                 wilson={wilson}
+                ssr={ssr}
               />
             </ListItem>
           );
@@ -118,14 +121,19 @@ export const CommunityComments = ({
 export const Comments = ({
   id = 'comments',
   title,
+  ssr,
 }: {
   id?: string;
   title?: string;
+  ssr?: boolean;
 }) => {
-  const [component, { error, loading }] = useComponent(id, {});
+  const [component, { error, loading }] = useComponent(id, {
+    suspend: true,
+    ssr,
+  });
   const [features, { loading: featuresLoading }] = useComponent('features', {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
   });
   const [comment, setComment] = useState('');
   const comments = component?.props?.comments || [];
@@ -196,11 +204,11 @@ export const Comments = ({
 const StrategyIcons = {
   google: GoogleIcon,
 };
-const Comment = ({ comment, canDelete, wilson }) => {
+const Comment = ({ comment, canDelete, wilson, ssr }) => {
   const { session } = useContext(authContext);
   const [component, { error, loading }] = useComponent(comment.key, {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
     data: comment,
   });
   const props = component?.props;
@@ -250,11 +258,11 @@ const Comment = ({ comment, canDelete, wilson }) => {
   );
 };
 
-const CommunityComment = ({ comment, canDelete, wilson }) => {
+const CommunityComment = ({ comment, canDelete, wilson, ssr }) => {
   const { session } = useContext(authContext);
   const [component, { error, loading }] = useComponent(comment.key, {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
     data: comment,
   });
   const props = component?.props;

@@ -49,10 +49,10 @@ const availableReactions = [
   'smile-hearts',
 ];
 
-export const Reactions = ({ data }) => {
+export const Reactions = ({ data, ssr }) => {
   const [component, { error, refetch }] = useComponent(data?.component, {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
     data,
   });
   const { voted, reactions } = component?.props || {};

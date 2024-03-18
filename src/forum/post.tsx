@@ -53,6 +53,7 @@ export type PostsPageProps = {
     forumTitle?: string;
     renderMetaTags?: boolean;
   };
+  ssr?: boolean;
 };
 export const PostsPage = ({
   basePath = '',
@@ -60,11 +61,12 @@ export const PostsPage = ({
   clientId,
   onTitleLeave,
   settings: { showPostBC, forumTitle, renderMetaTags } = {},
+  ssr,
 }: PostsPageProps) => {
   const params = useParams();
 
   if (params.post === 'new') {
-    return <NewPost forumKey={forumKey} />;
+    return <NewPost forumKey={forumKey} ssr={ssr} />;
   }
 
   return (
@@ -76,9 +78,10 @@ export const PostsPage = ({
           onTitleLeave={onTitleLeave}
           showBC={showPostBC}
           settings={{ forumTitle, renderMetaTags }}
+          ssr={ssr}
         />
       )}
-      <ComposeAnswer id={params.post} clientId={clientId} />
+      <ComposeAnswer id={params.post} clientId={clientId} ssr={ssr} />
     </Container>
   );
 };
@@ -90,6 +93,7 @@ export type PostProps = {
   onTitleLeave?: (left: boolean) => void;
   showBC?: boolean;
   settings?: { forumTitle?: string; renderMetaTags?: boolean };
+  ssr?: boolean;
 };
 const Post = ({
   id,
@@ -97,12 +101,13 @@ const Post = ({
   onTitleLeave,
   showBC = false,
   settings: { forumTitle, renderMetaTags } = {},
+  ssr,
 }: PostProps) => {
   // const { dispatch } = useContext(stateContext);
   const [_, setSkip] = useState(false);
   const [component, { error, loading }] = useComponent(id, {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
   });
 
   useEffect(() => {
@@ -283,16 +288,16 @@ const Post = ({
           (c) => c?.props?.body && (showDeleted ? true : !c?.props?.deleted)
         )
         ?.map((answer) => {
-          return <Answer answer={answer} />;
+          return <Answer answer={answer} ssr={ssr} />;
         })}
     </div>
   );
 };
 
-const Answer = ({ answer }) => {
+const Answer = ({ answer, ssr }) => {
   const [component] = useComponent(answer?.component, {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
     data: answer,
   });
   const [edit, setEdit] = useState(0);
@@ -346,17 +351,18 @@ const Answer = ({ answer }) => {
           }
         }}
         draft={DRAFT}
+        ssr={ssr}
       />
-      <CommunityComments id={answer?.children[1]?.component} />
+      <CommunityComments id={answer?.children[1]?.component} ssr={ssr} />
     </Card>
   );
 };
 
-const ComposeAnswer = ({ id, clientId }) => {
+const ComposeAnswer = ({ id, clientId, ssr }) => {
   const { session } = useContext(authContext);
   const [component] = useComponent(id, {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
   });
   const [body, setBody] = useState('');
   return (

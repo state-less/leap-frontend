@@ -41,6 +41,7 @@ export type ForumPageProps = {
     rules: string;
     qa: string;
   };
+  ssr?: boolean;
 };
 
 export type OverViewPostProps = {
@@ -48,6 +49,7 @@ export type OverViewPostProps = {
   component?: string;
   props: PostServerProps;
   basePath: string;
+  ssr?: string;
 };
 
 export type PostServerProps = {
@@ -65,6 +67,7 @@ export const ForumPage = ({
   basePath = '',
   clientId,
   ghSrc = {} as any,
+  ssr,
 }: ForumPageProps) => {
   const [page, setPage] = useState(startPage);
   const [pageSize, setPageSize] = useLocalStorage(
@@ -73,7 +76,7 @@ export const ForumPage = ({
   );
   const [component, { loading }] = useComponent(forumKey, {
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
     props: {
       page,
       pageSize,
@@ -248,11 +251,11 @@ export const StickyCard = (props) => {
 };
 
 const Post = (post: OverViewPostProps) => {
-  const { basePath } = post;
+  const { basePath, ssr } = post;
   const [votes] = useComponent(post.children?.[0]?.component, {
     data: post.children?.[0],
     suspend: true,
-    ssr: import.meta.env.SSR,
+    ssr,
   });
   const { score, upvotes, downvotes } = votes?.props || {};
   const wilson = true,
@@ -423,7 +426,7 @@ const PostOverviewMeta = ({ nVotes, nAnswers, post, plainText }) => {
   );
 };
 
-const Posts = ({ component, basePath }) => {
+const Posts = ({ component, basePath, ssr }) => {
   const sticky = component?.children?.filter((post) => post.props.sticky) || [];
   const nonSticky =
     component?.children?.filter((post) => !post.props.sticky) || [];
@@ -433,13 +436,13 @@ const Posts = ({ component, basePath }) => {
       {sticky?.length > 0 && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
           {sticky.map((post) => {
-            return <Post {...post} basePath={basePath} />;
+            return <Post {...post} basePath={basePath} ssr={ssr} />;
           })}
         </Box>
       )}
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
         {nonSticky.map((post) => {
-          return <Post {...post} basePath={basePath} />;
+          return <Post {...post} basePath={basePath} ssr={ssr} />;
         })}
       </Box>
     </FlexBox>
