@@ -227,6 +227,7 @@ const Comment = ({ comment, canDelete, wilson, ssr }) => {
           id={component?.children[0].key}
           data={component?.children[0]}
           wilson={wilson}
+          ssr={ssr}
         />
         <CardContent
           sx={{
@@ -277,7 +278,7 @@ const CommunityComment = ({ comment, canDelete, wilson, ssr }) => {
   return (
     <>
       <ListItemIcon>
-        <UpButton id={component?.children[0].key} wilson={wilson} />
+        <UpButton id={component?.children[0].key} wilson={wilson} ssr={ssr} />
       </ListItemIcon>
       <Markdown small>
         {props?.message + ` *- ${props?.identity.name}*`}

@@ -45,14 +45,18 @@ export const UpDownButtons = ({
   wilson,
   data,
   id = 'votings',
+  ssr,
 }: {
   random?: boolean;
   wilson?: boolean;
   hideVotes?: boolean;
   data: { props: VotingServerProps };
   id?: string;
+  ssr?: boolean;
 }) => {
   const [component, { loading, error }] = useComponent(id, {
+    suspend: true,
+    ssr: ssr,
     data,
   });
   const { score, upvotes, downvotes, voted, policies } = component?.props || {};
@@ -110,13 +114,18 @@ export const UpButton = ({
   random,
   wilson,
   id = 'votings',
+  ssr,
 }: {
   random?: boolean;
   wilson?: boolean;
   hideVotes?: boolean;
   id?: string;
+  ssr?: boolean;
 }) => {
-  const [component, { loading, error }] = useComponent(id, {});
+  const [component, { loading, error }] = useComponent(id, {
+    suspend: true,
+    ssr: ssr,
+  });
   const { score, upvotes, downvotes, voted, policies } = component?.props || {};
   const randomUp = useMemo(() => Math.random(), []);
   const randomDown = useMemo(() => Math.random(), []);
@@ -166,13 +175,18 @@ export const VotingApp = ({
   wilson,
   id = 'votings',
   hideVotes = false,
+  ssr,
 }: {
   random?: boolean;
   wilson?: boolean;
   hideVotes?: boolean;
   id?: string;
+  ssr?: boolean;
 }) => {
-  const [component, { loading, error }] = useComponent(id, {});
+  const [component, { loading, error }] = useComponent(id, {
+    suspend: true,
+    ssr: ssr,
+  });
   const { score, upvotes, downvotes, voted, policies } = component?.props || {};
 
   const randomUp = useMemo(() => Math.random(), []);

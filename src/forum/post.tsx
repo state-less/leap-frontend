@@ -281,7 +281,7 @@ const Post = ({
         )}
       </Card>
       {component?.props.viewCounter && (
-        <ViewCounter componentKey={component?.props.viewCounter?.component} />
+        <ViewCounter componentKey={component?.props.viewCounter?.component} ssr={ssr} />
       )}
       {component?.children
         .filter(

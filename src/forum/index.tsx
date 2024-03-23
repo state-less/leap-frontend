@@ -330,6 +330,7 @@ const Post = (post: OverViewPostProps) => {
                 nAnswers={nAnswers}
                 nVotes={sum}
                 post={post}
+                ssr={ssr}
               />
             </FlexBox>
           </Grid>
@@ -376,7 +377,7 @@ const Post = (post: OverViewPostProps) => {
   );
 };
 
-const PostOverviewMeta = ({ nVotes, nAnswers, post, plainText }) => {
+const PostOverviewMeta = ({ nVotes, nAnswers, post, plainText, ssr }) => {
   const votesStr = `${nVotes} votes`;
   const answersStr = `${nAnswers} answers`;
   return (
@@ -421,6 +422,7 @@ const PostOverviewMeta = ({ nVotes, nAnswers, post, plainText }) => {
         variant={plainText ? 'plaintext' : 'listitem'}
         componentKey={post?.props?.viewCounter?.component}
         data={post?.props?.viewCounter}
+        ssr={ssr}
       />
     </CardContent>
   );

@@ -19,6 +19,7 @@ export type ViewCounterProps = {
   clientOnly?: boolean;
   sx?: CardProps['sx'];
   textColor?: string;
+  ssr?: boolean;
 };
 
 export const ViewCounterSpan = ({ component, clientOnly }) => {
@@ -104,10 +105,13 @@ export const ViewCounter = ({
   clientOnly,
   sx,
   textColor,
+  ssr,
 }: ViewCounterProps) => {
   const [component, { loading }] = useComponent(componentKey, {
     skip,
     data,
+    suspend: true,
+    ssr: ssr,
   });
 
   const props = { clientOnly, component, loading, sx, textColor };
